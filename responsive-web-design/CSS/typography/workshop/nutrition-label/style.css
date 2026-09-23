@@ -1,0 +1,185 @@
+/*
+si può modificare il weight, lo style e la width di un font
+baseline, dove le lettere si appoggiano
+cap height, l'altezza delle lettere maiuscole
+x-height, altezza delle lettere minuscole
+ascenders, lettere minuscole che superano in alto la x-height
+descenders, lettere minuscole che superano in basso la x-height
+kerning, lo spazio tra due lettere per renderle più leggibili
+tracking, lo spazio tra tutti i caratteri di un blocco di testo
+leading, lo spazio verticale tra le linee di testo
+
+font size per la gerarchia
+scegli due o tre font al massimo
+usa gli whitespace per rendere più leggibile
+high contrast text
+aggiungi opzioni per modificare la grandezza del font
+
+"font-family"
+fallback font: "font-family: Arial, Lato;" Lato è il fallback se non viene trovato Arial
+nel processo di selezione di un font viene fatto un carattere alla volta, quindi se arial non ha un carattere particolare allora quel carattere verrà fatto passare a Lato
+generic font families, sono degli ulteriori fallback
+
+web-safe fonts, sono dei font che sono sulla maggior parte dei computer
+  - Arial
+  - Verdana
+  - Trebuchet MS
+  - Times New Roman
+  - Georgia
+
+gli "at-rule" sono frasi che danno al browser delle istruzioni, puoi usarle per definire diversi aspetto del tuo stylesheet, tra cui anche le font faces.
+"@font-face" questo è l'at-rule
+con questo puoi definire font personalizzati specificando il font file, il formato, e altre proprietà importanti come lo stile e il peso.
+@font-face {
+  Descriptors
+}
+una regola può essere questa: "font-family: "MyCustomFont";" questo sarà il nome che userai per riferirti al tuo font sul tuo stylesheet
+tipo così:
+body {
+  font-family: "MyCustomFont";
+}
+nel "@font-face" bisogna anche specificare gli scr, sono una lista di risorse esterne per il font e sono separate da virgole.
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("path/to/font.woff2"),
+    url("path/to/font.woff"),
+    url("path/to/font.otf");
+}
+per ogni risorsa potresti anche specificare il tipo, anche se non è obbligatorio.
+formati per i font sono: collection, embedded-opentype, opentype, svg, truetype, woff e woff2.
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("path/to/font.woff2") format("woff2"),
+    url("path/to/font.otf") format("opentype"),
+    url("path/to/font.woff") format("woff");
+}
+oltre a specificare il formato puoi anche specificare la tecnologia della risorsa font, anche questo è opzionale.
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("path/to/font.woff2") format("woff2"),
+    url("path/to/font.otf") format("opentype") tech(color-COLRv1),
+    url("path/to/font.woff") format("woff");
+}
+
+external font sono hostati su server e quindi sono disponibili a tutti
+uno è Google Fonts, pensati apposta per lo sviluppo web.
+puoi decidere se scaricare il file o se incorporarlo tramite server, devi mettere il "link" nella "head" dell'html e poi il codice CSS nel CSS, ci sono comunque le istruzioni
+se invece vuoi usare "@import" allora lo devi scrivere nel CSS
+Font Squirrel invece ti fa scaricare una cartella con i file da inserire nel tuo codice tramite "@font-face" con anche delle istruzioni.
+
+"text-shadow" per aggiungere le ombre al testo
+abbiamo l'offset della "X" e della "Y" tipo in pixel
+poi puoi aggiungere un coloro a questa shadow
+X positiva sposta l'ombra a destra, X negativa a sinistra
+Y positiva sposta l'ombra in basso, Y negativa sposta l'ombra in alto
+Blur Radius, per rendere l'ombra un po' più morbida perché sennò sarebbe identica alla parola
+puoi avere anche più ombre, basta che le scrivi tutte nello stesso "text-shadow" e che siano separate da virgole
+p {
+  text-shadow:
+    3px 2px 3px #00ffc3,
+    -3px -2px 3px #0077ff,
+    5px 4px 3px #dee7e5;
+}
+*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.label {
+  border: 2px solid black;
+  width: 270px;
+  margin: 20px auto;
+  padding: 0 7px;
+}
+
+header h1 {
+  text-align: center;
+  margin: -4px 0;
+  letter-spacing: 0.15px;
+}
+
+p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.divider {
+  border-bottom: 1px solid #888989;
+  margin: 2px 0;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.large {
+  height: 10px;
+}
+
+.large,
+.medium {
+  background-color: black;
+  border: 0;
+}
+
+.medium {
+  height: 5px;
+}
+
+.small-text {
+  font-size: 0.85rem;
+}
+
+.calories-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.calories-info h2 {
+  margin: 0;
+}
+
+.left-container p {
+  margin: -5px -2px;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.calories-info span {
+  margin: -7px -2px;
+  font-size: 2.4em;
+  font-weight: 700;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.indent {
+  margin-left: 1em;
+}
+
+.daily-value p:not(.no-divider) {
+  border-bottom: 1px solid #888989;
+}
+
+.double-indent {
+  margin-left: 2em;
+}
+
+.note {
+  font-size: 0.6rem;
+  margin: 5px 0;
+  padding: 0 8px;
+  text-indent: -8px;
+}
